@@ -8,7 +8,7 @@ const path = require('path')
 
 
 
-mongoose.connect(process.env.MONGOLAB_GOLD_URI || 'mongodb://localhost:27017/hotel', {useNewUrlParser: true}).then(() => {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hotel', {useNewUrlParser: true}).then(() => {
     console.log('connected to mongo')
 })
 .catch(err => {
