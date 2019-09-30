@@ -12,13 +12,12 @@
     "moment": "^2.24.0",
     "mongoose": "^5.7.1",
     "node": "^12.11.0",
-    "react-big-calendar": "^0.22.1",
-    "react-datepicker": "^2.9.6"
+    "react-big-calendar": "^0.22.1"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "node server.js",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "engines": {
