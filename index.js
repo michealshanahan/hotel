@@ -3,12 +3,12 @@ const mongoose = require('mongoose')
 const app = express()
 const expressJwt = require("express-jwt")
 require('dotenv').config()
-const port = 5566
+const port = process.env.port || 5000
 const path = require('path')
 
 
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hotel', {useNewUrlParser: true}).then(() => {
+mongoose.connect(process.env.MONGOLAB_GOLD_URI || 'mongodb://localhost:27017/hotel', {useNewUrlParser: true}).then(() => {
     console.log('connected to mongo')
 })
 .catch(err => {
@@ -23,6 +23,7 @@ app.use('/api', expressJwt({ secret: process.env.SECRET || "just some words for 
 app.use('/api/reservations', require('./routers/ReservationsRouter'))
 app.use(express.static(path.join(__dirname, "client", "build")))
 
+
 app.use((err, req, res, next) => {
     console.log(err)
     if(err.name === "UnauthorizedError"){
@@ -33,7 +34,7 @@ app.use((err, req, res, next) => {
 
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"))
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 })
 app.listen(port, () => {
     console.log(`app is listening ${port}`)
